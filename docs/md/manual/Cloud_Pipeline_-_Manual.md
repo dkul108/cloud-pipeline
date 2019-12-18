@@ -51,7 +51,7 @@
     - [12.1. Add a new system event](12_Manage_Settings/12.1._Add_a_new_system_event.md)
     - [12.2. Edit a system event](12_Manage_Settings/12.2._Edit_a_system_event.md)
     - [12.3. Create a new user](12_Manage_Settings/12.3._Create_a_new_user.md)
-    - [12.4. Edit/delete a user](12_Manage_Settings/12.4._Edit_delete_a_user.md)
+    - [12.4. Edit/delete a user](12_Manage_Settings/12.4._Edit_delete_a_user.md) 
     - [12.5. Create a group](12_Manage_Settings/12.5._Create_a_group.md)
     - [12.6. Edit a group/role](12_Manage_Settings/12.6._Edit_a_group_role.md)
     - [12.7. Delete a group](12_Manage_Settings/12.7._Delete_a_group.md)

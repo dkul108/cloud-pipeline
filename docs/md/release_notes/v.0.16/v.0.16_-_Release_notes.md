@@ -10,6 +10,7 @@
 - [Allowing to expose compute node FS to upload and download files](#allowing-to-expose-compute-node-fs-to-upload-and-download-files)
 - [Resource usage form improvement](#resource-usage-form-improvement)
 - [Update pipe CLI version](#update-pipe-cli-version)
+- [Blocking/unblocking users and groups](#Blockingunblocking-users-and-groups)
 
 ***
 
@@ -203,6 +204,29 @@ This command compare the CLI and API versions. If the CLI version is less than t
 ![CP_v.0.16_ReleaseNotes](attachments/RN016_PipeUpdate_1.png)
 
 For more details see [here](../../manual/14_CLI/14.1._Install_and_setup_CLI.md#update-the-cli).
+
+## Blocking/unblocking users and groups
+
+The blocking and unblocking users and groups feature is now available via GUI. Administrator is able to change user and group statuses.  
+To block or unblock user go to the User management tab in the Settings dashboard. Click on the Edit button next to the user.  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_1.png)  
+To block user click on the Block button at the botom of the form:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_2.png)  
+To unblock user click on the Unblock button:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_3.png)  
+
+The "blocked" label will be displayed aside from the user's name:
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_4.png)  
+Blocked user won't be able to access `Cloud Pipeline` via GUI. The error message will be displayed:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_5.png)  
+
+To block the group go to the Groups tab in the User management dashboard. Press the Edit button:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_1.png)  
+The editing form will be displayed. Clock on the Block button to block group:   
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_2.png)  
+To unblock the group press the Unblock button that appeard insted of the Block button:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_3.png)  
+The "blocked" label will appear next to the group name.  
 
 ***
 
