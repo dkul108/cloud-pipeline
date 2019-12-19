@@ -208,26 +208,23 @@ For more details see [here](../../manual/14_CLI/14.1._Install_and_setup_CLI.md#u
 
 ## Blocking/unblocking users and groups
 
-The blocking and unblocking users and groups feature is now available via GUI. Administrator is able to change user and group statuses.  
-To block or unblock user go to the User management tab in the Settings dashboard. Click on the Edit button next to the user.  
+Administrators can block or unblock users/groups via User management tab on the Settings dashboard.  
+First of all, click on the Edit button aside from user name:
     ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_1.png)  
 To block user click on the Block button at the botom of the form:  
-    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_2.png)  
-To unblock user click on the Unblock button:  
-    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_3.png)  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_2.png)    
 
-The "blocked" label will be displayed aside from the user's name:
+If user is blocked the "blocked" label will be displayed aside from the user's name:  
     ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_4.png)  
 Blocked user won't be able to access `Cloud Pipeline` via GUI. The error message will be displayed:  
     ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_5.png)  
 
-To block the group go to the Groups tab in the User management dashboard. Press the Edit button:  
-    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_1.png)  
-The editing form will be displayed. Clock on the Block button to block group:   
-    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_2.png)  
-To unblock the group press the Unblock button that appeard insted of the Block button:  
-    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_3.png)  
-The "blocked" label will appear next to the group name.  
+To unblock user click on the Unblock button at the botom of the form:   
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingUsers_3.png)  
+
+To block/unblock the group go to the Groups tab in the User management dashboard:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_4.png)  
+All actions are the same with blocking/unblocking user.  
 
 For more details about users see [here](../../manual/12_Manage_Settings/12.4._Edit_delete_a_user.md)  
 For more details about groups see [here](../../manual/12_Manage_Settings/12.6._Edit_a_group_role.md)
@@ -254,7 +251,7 @@ _**Note**: Such runs produce extra costs._
 
 This label is displayed when CPU/Memory/Disk consumption is higher than a certain level (the configurations which are defined by the admin in System tab in Preferences dashboard):
     ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_6.png)  
-    
+
 - `system.disk.consume.threshold` - specifies the disk threshold (in %) above which label shall be displayed.  
 - `system.memory.consume.threshold` - specifies the percentage of the memory threshold above which label shall be displayed. 
 
