@@ -10,7 +10,8 @@
 - [Allowing to expose compute node FS to upload and download files](#allowing-to-expose-compute-node-fs-to-upload-and-download-files)
 - [Resource usage form improvement](#resource-usage-form-improvement)
 - [Update pipe CLI version](#update-pipe-cli-version)
-- [Blocking/unblocking users and groups](#Blockingunblocking-users-and-groups)
+- [Blocking/unblocking users and groups](#blockingunblocking-users-and-groups)
+- [Idle and Pressure runs](#idle-and-pressure-runs)
 
 ***
 
@@ -227,6 +228,43 @@ The editing form will be displayed. Clock on the Block button to block group:
 To unblock the group press the Unblock button that appeard insted of the Block button:  
     ![CP_v.0.16_ReleaseNotes](attachments/RN016_BlockingGroups_3.png)  
 The "blocked" label will appear next to the group name.  
+
+For more details about users see [here](../../manual/12_Manage_Settings/12.4._Edit_delete_a_user.md)  
+For more details about groups see [here](../../manual/12_Manage_Settings/12.6._Edit_a_group_role.md)
+
+## Idle and Pressure runs
+
+For the `Active Runs` the system allows to view high-level metrics information.
+
+### IDLE
+
+This label is displayed when CPU/Memory consumption is lower than a certain level (the configurations which are defined by the admin in System tab in Preferences dashboard):  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_1.png)  
+
+- `system.max.idle.timeout.minutes` - specifies the duration in minutes how often the system should check the run for activity.  
+- `system.idle.cpu.threshold` - specifies the percentage of the CPU utilization, below which label shall be displayed.  
+
+The label will be displayed on the list of active runs next to the Run:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_2.png)  
+And on the runs information page:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_3.png)  
+_**Note**: Such runs produce extra costs._  
+
+### PRESSURE
+
+This label is displayed when CPU/Memory/Disk consumption is higher than a certain level (the configurations which are defined by the admin in System tab in Preferences dashboard):
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_6.png)  
+    
+- `system.disk.consume.threshold` - specifies the disk threshold (in %) above which label shall be displayed.  
+- `system.memory.consume.threshold` - specifies the percentage of the memory threshold above which label shall be displayed. 
+
+The label will be displayed on the list of active runs next to the Run:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_4.png)  
+And on the runs information page:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_IdlePressureRuns_5.png)  
+ _**Note**: Such runs may accidentally fail._  
+
+For more details see [here](../../manual/11_Manage_Runs/11._Manage_Runs.md)
 
 ***
 
