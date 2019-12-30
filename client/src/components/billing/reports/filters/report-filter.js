@@ -15,58 +15,54 @@
  */
 
 import React from 'react';
-import {Button, Dropdown, Icon, Menu} from 'antd';
+import {Menu} from 'antd';
+import classNames from 'classnames';
+
+import styles from './report-filter.css';
 
 export default function ({onChange, filter}) {
   const onSelect = ({key}) => {
     onChange && onChange(key);
   };
+  const isSubMenuSelected = (t) => (t === filter);
   const storagesMenu = (
-    <Menu selectedKeys={[filter]} onClick={onSelect}>
+    <Menu.SubMenu
+      className={classNames(styles.styledSubMenu, {
+        [styles.styledSubMenuSelected]: isSubMenuSelected('storages')
+      })}
+      key="storages"
+      title="Storages"
+      onTitleClick={onSelect}
+    >
       <Menu.Item key="storages.file">File storages</Menu.Item>
       <Menu.Item key="storages.object">Object storages</Menu.Item>
-    </Menu>
+    </Menu.SubMenu>
   );
   const instancesMenu = (
-    <Menu selectedKeys={[filter]} onClick={onSelect}>
+    <Menu.SubMenu
+      className={classNames(styles.styledSubMenu, {
+        [styles.styledSubMenuSelected]: isSubMenuSelected('instances')
+      })}
+      key="instances"
+      title="Compute instances"
+      onTitleClick={onSelect}
+    >
       <Menu.Item key="instances.cpu">CPU</Menu.Item>
       <Menu.Item key="instances.gpu">GPU</Menu.Item>
-    </Menu>
+    </Menu.SubMenu>
   );
-  const [main] = (filter || '').split('.');
-  const getButtonType = (t) => (new RegExp(`^${t}$`, 'i')).test(main) ? 'primary' : undefined;
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center'
-      }}
+    <Menu
+      className={styles.styledMenu}
+      mode="inline"
+      inlineIndent={12}
+      onClick={onSelect}
+      openKeys={['storages', 'instances']}
+      selectedKeys={[filter]}
     >
-      <Button.Group>
-        <Button
-          type={getButtonType('general')}
-          onClick={() => onSelect({key: 'general'})}
-        >
-          General
-        </Button>
-        <Dropdown overlay={storagesMenu}>
-          <Button
-            onClick={() => onSelect({key: 'storages'})}
-            type={getButtonType('storages')}
-          >
-            Storages <Icon type="down" />
-          </Button>
-        </Dropdown>
-        <Dropdown overlay={instancesMenu}>
-          <Button
-            onClick={() => onSelect({key: 'instances'})}
-            type={getButtonType('instances')}
-          >
-            Compute instances <Icon type="down" />
-          </Button>
-        </Dropdown>
-      </Button.Group>
-    </div>
+      <Menu.Item key="general">General</Menu.Item>
+      {storagesMenu}
+      {instancesMenu}
+    </Menu>
   );
 }
