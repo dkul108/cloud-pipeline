@@ -7,6 +7,7 @@
 - [Extended recursive symlinks handling](#extended-recursive-symlinks-handling)
 - [Displaying of the latest commit date/time](#displaying-of-the-latest-commit-datetime)
 - [Renaming of the GitLab repository in case of Pipeline renaming](#renaming-of-the-gitlab-repository-in-case-of-pipeline-renaming)
+- [Pushing pipeline changes to the GitLab on behalf of the user](#pushing-pipeline-changes-to-the-gitlab-on-behalf-of-the-user)
 - [Allowing to expose compute node FS to upload and download files](#allowing-to-expose-compute-node-fs-to-upload-and-download-files)
 - [Resource usage form improvement](#resource-usage-form-improvement)
 - [Update pipe CLI version](#update-pipe-cli-version)
@@ -16,6 +17,8 @@
 ***
 
 - [Notable Bug fixes](#notable-bug-fixes)
+    - [Packages are duplicated in the tool's version details](#packages-are-duplicated-in-the-tools-version-details)
+    - [Autoscaling cluster can be autopaused](#autoscaling-cluster-can-be-autopaused)
     - [`pipe`: not-handled error while trying to execute commands with invalid config](#pipe-not-handled-error-while-trying-to-execute-commands-with-invalid-config)
     - [Setting of the tool icon size](#setting-of-the-tool-icon-size)
     - [`NPE` while building cloud-specific environment variables for run](#npe-while-building-cloud-specific-environment-variables-for-run)
@@ -33,6 +36,7 @@
     - [Azure: runs with enabled GE autoscaling doesn't stop](#azure-runs-with-enabled-ge-autoscaling-doesnt-stop)
     - [Incorrect behavior while download files from external resources into several folders](#incorrect-behavior-while-download-files-from-external-resources-into-several-folders)
     - [Detach configuration doesn't setup SGE for a single master run](#detach-configuration-doesnt-setup-sge-for-a-single-master-run)
+    - [Broken layouts](#broken-layouts)
 
 ***
 
@@ -129,18 +133,26 @@ For more details about tool commit see [here](../../manual/10_Manage_Tools/10.4.
 
 ## Renaming of the GitLab repository in case of Pipeline renaming
 
-Pipeline in the Cloud Pipeline environment is a workflow script with versioned source code, documentation, and configuration. Under the hood, it is a git repository.
+**Pipeline** in the Cloud Pipeline environment is a workflow script with versioned source code, documentation, and configuration. Under the hood, it is a git repository.
 
-Previously, if the Pipeline object was renamed - the underlying GitLab repository was keeping the previous name.  
-In the current version, if user renames a Pipeline the corresponding GitLab repository will be also automatically renamed:  
+Previously, if the **Pipeline** object was renamed - the underlying GitLab repository was keeping the previous name.  
+In the current version, if user renames a **Pipeline** the corresponding GitLab repository will be also automatically renamed:  
 
 - ![CP_v.0.16_ReleaseNotes](attachments/RN016_RenamingGitLabRepo_1.png)
 - ![CP_v.0.16_ReleaseNotes](attachments/RN016_RenamingGitLabRepo_2.png)
 - ![CP_v.0.16_ReleaseNotes](attachments/RN016_RenamingGitLabRepo_3.png)
 
-Need to consider in such case that the clone/pull/push URL changes too. Make sure to change the remote address, if you use the Pipeline somewhere else.
+Need to consider in such case that the clone/pull/push URL changes too. Make sure to change the remote address, if you use the **Pipeline** somewhere else.
 
 For more details see [here](../../manual/06_Manage_Pipeline/6.1._Create_and_configure_pipeline.md#edit-a-pipeline-info).
+
+## Pushing pipeline changes to the GitLab on behalf of the user
+
+If the user saves the changed **Pipeline** object - it actually means that a new commit is created and pushed to the corresponding GitLab repo.  
+Previously, all the commits pushed to the GitLab via the Cloud Pipeline GUI were made on behalf of the `service account`. This could break traceability of the changes.
+
+In current version, the author of the commit is displayed in the Web GUI (for all **Pipeline** versions - the draft and released), the commits are performed on behalf of the real user:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_PushToGitLabRepo_1.png)
 
 ## Allowing to expose compute node FS to upload and download files
 
@@ -265,6 +277,18 @@ For more details see [here](../../manual/11_Manage_Runs/11._Manage_Runs.md#displ
 
 ## Notable Bug fixes
 
+### Packages are duplicated in the tool's version details
+
+[#843](https://github.com/epam/cloud-pipeline/issues/843)
+
+Previously, certain tools packages were duplicated in the **PACKAGES** details page of the tools version.
+
+### Autoscaling cluster can be autopaused
+
+[#819](https://github.com/epam/cloud-pipeline/issues/819)
+
+Previously, when users launched auto-scaled clusters without default child-nodes and the `PAUSE` action was specified as action for the "idle" run (via system-levels settings), such cluster runs could be paused. Any cluster runs shall not have the ability to be paused, only stopped.
+
 ### `pipe`: not-handled error while trying to execute commands with invalid config
 
 [#750](https://github.com/epam/cloud-pipeline/issues/750)
@@ -371,3 +395,11 @@ If user was tried to download files from external resources and at the **Transfe
 [#342](https://github.com/epam/cloud-pipeline/issues/342)
 
 `Grid Engine` installation was mistakenly being skipped, if pipeline was launched with enabled system parameter **`CP_CAP_SGE`** via a detach configuration.
+
+### Broken layouts
+
+[#747](https://github.com/epam/cloud-pipeline/issues/747), [#834](https://github.com/epam/cloud-pipeline/issues/834)
+
+Previously, **pipeline versions page** had broken layout if there "Attributes" and "Issues" panels were simultaneously opened.  
+If there were a lot of node labels at the **Cluster nodes** page, some of them were "broken" and spaced to different lines.  
+Some of the other page layouts also were broken.
