@@ -13,6 +13,7 @@
 - [Update pipe CLI version](#update-pipe-cli-version)
 - [Blocking/unblocking users and groups](#blockingunblocking-users-and-groups)
 - [Displaying additional node metrics](#displaying-additional-node-metrics-at-the-runs-page)
+- [Export users via CSV file](#export-users-via-csv-file)
 
 ***
 
@@ -272,6 +273,22 @@ For the **`PRESSURE`** label:
 - `system.memory.consume.threshold` - specifies the percentage of the node memory threshold above which the label will be displayed
 
 For more details see [here](../../manual/11_Manage_Runs/11._Manage_Runs.md#displaying-additional-node-metrics).
+
+## Export users via CSV file
+
+Administrators can export users via User management tab on the Settings dashboard:  
+    ![CP_v.0.16_ReleaseNotes](attachments/RN016_ExportUsers_1.png)  
+The downloaded file will have the .csv format. 
+There are 2 export options:  
+
+1. Default configuration  
+    By default the system will download the Excel file with all users and their attributes.
+2. Custom configuration  
+    Custom configuration allows user to select which fields should be downloaded. After pressing the "Custom configuration" button the system will display the modal window with the list of available attributes:  
+        ![CP_v.0.16_ReleaseNotes](attachments/RN016_ExportUsers_2.png)  
+    To download the custom file press the "Download CSV" button.  
+
+For more details see [here](../../manual/12_Manage_Settings/12._Manage_Settings.md)
 
 ***
 
