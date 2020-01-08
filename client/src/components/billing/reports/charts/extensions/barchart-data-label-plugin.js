@@ -23,7 +23,6 @@ function isNotSet (v) {
 const plugin = {
   id,
   afterDatasetsDraw: function (chart, ease, pluginOptions) {
-    // console.log('chart', chart.options.title.text)
     if (pluginOptions && pluginOptions.showDataLabels) {
       const {
         datasetLabels = [],

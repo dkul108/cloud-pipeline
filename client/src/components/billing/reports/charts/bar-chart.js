@@ -18,7 +18,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import Chart from './base';
 import {colors, getColor, getBackgroundColor} from './colors';
-import { BarchartDataLabelPlugin } from './extensions';
+import {BarchartDataLabelPlugin} from './extensions';
 
 function toValueFormat (value) {
   return Math.round((+value || 0) * 100.0) / 100.0;
