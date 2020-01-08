@@ -17,6 +17,7 @@
 import './summary-chart';
 import './quota-bar';
 import * as PointDataLabelPlugin from './point-data-label-plugin';
+import * as BarchartDataLabelPlugin from './barchart-data-label-plugin';
 import * as VerticalLinePlugin from './vertical-line-plugin';
 
-export {PointDataLabelPlugin, VerticalLinePlugin};
+export {PointDataLabelPlugin, VerticalLinePlugin, BarchartDataLabelPlugin};

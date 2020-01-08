@@ -49,8 +49,18 @@ function GroupedBarChart ({data, onSelect, title}) {
       }}
     >
       {title && <div className={styles.title}>{title}</div>}
-      <div style={{flex: 1, width: '100%', height: '100%', position: 'relative'}}>
-        <div style={{width: '100%', height: '100%', display: 'block', position: 'relative'}}>
+      <div style={{
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        position: 'relative'
+      }}>
+        <div style={{
+          width: '100%',
+          height: '100%',
+          display: 'block',
+          position: 'relative'
+        }}>
           {charts}
         </div>
       </div>

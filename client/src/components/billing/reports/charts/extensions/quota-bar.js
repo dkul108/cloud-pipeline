@@ -26,13 +26,25 @@ Chart.controllers['quota-bar'] = Chart.controllers.line.extend({
     if (xAxisID && chart && chart.scales[xAxisID]) {
       const ctx = this.chart.ctx;
       const {data = [], index} = meta || {};
-      const {borderWidth, borderColor, borderDash} = this.getDataset();
+      const {
+        borderWidth,
+        borderColor,
+        borderDash,
+        textColor,
+        showDataLabels
+      } = this.getDataset();
       const bars = this.chart.config.data.datasets
         .map((d, i) => this.chart.getDatasetMeta(i))
         .filter(d => d.index !== index && d.type === 'bar');
+      const [values] = this.chart.config.data.datasets
+        .filter(dataset => dataset.type === 'quota-bar')
+        .map((dataset) => dataset.data);
       ctx.save();
       if (borderColor) {
         ctx.strokeStyle = borderColor;
+      }
+      if (showDataLabels) {
+        ctx.fillStyle = textColor || borderColor;
       }
       if (borderWidth !== undefined) {
         ctx.lineWidth = borderWidth;
@@ -55,10 +67,19 @@ Chart.controllers['quota-bar'] = Chart.controllers.line.extend({
               .filter(b => b.data && b.data.length > i)
               .map(b => b.data[i]._view.x + b.data[i]._view.width / 2.0)
           );
+          const center = (right - left) / 2 + left;
+          const labelViewY = dataItem._view.y < 20
+            ? dataItem._view.y + 15
+            : dataItem._view.y - 5;
           ctx.beginPath();
           ctx.moveTo(left, dataItem._view.y);
           ctx.lineTo(right, dataItem._view.y);
           ctx.stroke();
+          if (showDataLabels) {
+            ctx.font = '14px serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(values[i], center, labelViewY);
+          }
         }
       }
       ctx.restore();

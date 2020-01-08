@@ -198,7 +198,11 @@ function GeneralReport ({billingCentersRequest, resources, summary}) {
         </ChartContainer>
       </div>
       <div className={styles.chartsColumnContainer} style={{flex: 0.4}}>
-        <ChartContainer style={{height: 400, position: 'relative'}}>
+        <ChartContainer style={{
+          height: 400,
+          position: 'relative',
+          marginBottom: 40
+        }}>
           <GroupedBarChart
             data={resources && resources.loaded ? resources.value : {}}
             title="Resources"

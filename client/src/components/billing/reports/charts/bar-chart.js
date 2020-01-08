@@ -18,6 +18,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import Chart from './base';
 import {colors, getColor, getBackgroundColor} from './colors';
+import { BarchartDataLabelPlugin } from './extensions';
 
 function toValueFormat (value) {
   return Math.round((+value || 0) * 100.0) / 100.0;
@@ -71,7 +72,9 @@ function BarChart (
         borderDash: [4, 4],
         borderColor: getColor(colorsConfig, 'previous') || colors.red,
         backgroundColor: getBackgroundColor(colorsConfig, 'previous') || 'transparent',
-        borderSkipped: ''
+        borderSkipped: '',
+        textColor: '',
+        showDataLabels: true
       },
       {
         label: 'Current',
@@ -111,11 +114,26 @@ function BarChart (
     tooltips: {
       intersect: false,
       mode: 'index'
+    },
+    plugins: {
+      [BarchartDataLabelPlugin.id]: {
+        showDataLabels: true,
+        datasetLabels: ['Current'],
+        textColor: '',
+        labelPosition: 'inner'
+      }
     }
   };
   return (
     <div style={Object.assign({height: '100%', position: 'relative', display: 'block'}, style)}>
-      <Chart data={chartData} type="bar" options={options} />
+      <Chart
+        data={chartData}
+        type="bar"
+        options={options}
+        plugins={[
+          BarchartDataLabelPlugin.plugin
+        ]}
+      />
     </div>
   );
 }
