@@ -99,18 +99,23 @@ class Filters extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.selectors}>
-          <ReportFilter
-            filter={this.reportsFilter.report}
-            onChange={this.reportsFilter.buildNavigationFn('report')}
-          />
-          <PeriodFilter
-            filter={this.reportsFilter.period}
-            onChange={this.reportsFilter.buildNavigationFn('period')}
-          />
-          <RunnerFilter
-            filter={this.reportsFilter.runner}
-            onChange={this.reportsFilter.buildNavigationFn('runner')}
-          />
+          <div>
+            <ReportFilter
+              filter={this.reportsFilter.report}
+              onChange={this.reportsFilter.buildNavigationFn('report')}
+            />
+          </div>
+          <div>
+            <PeriodFilter
+              filter={this.reportsFilter.period}
+              onChange={this.reportsFilter.buildNavigationFn('period')}
+            />
+            <RunnerFilter
+              filter={this.reportsFilter.runner}
+              onChange={this.reportsFilter.buildNavigationFn('runner')}
+            />
+          </div>
+          <div />
         </div>
         <div style={{marginTop: 10}}>
           <Provider reportsFilter={this.reportsFilter}>
